@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Form Inspeksi</title>
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<header>
+  <span id="driverName"></span>
+  <button onclick="logout()">Keluar</button>
+</header>
+
+<div id="maintenanceAlert"></div>
+
+<div class="container">
+  <h3>Form Inspeksi Kendaraan</h3>
+
+  <label>Plat Nomor</label>
+  <input id="plat" placeholder="BM 1234 AA">
+
+  <label>KM Awal</label>
+  <input id="kmAwal" readonly>
+
+  <label>KM Akhir</label>
+  <input id="kmAkhir" type="number">
+
+  <label>Jam Hadir</label>
+  <input id="jamHadir" type="time">
+
+  <label>Jam Pulang</label>
+  <input id="jamPulang" type="time">
+
+  <button onclick="submitInspeksi()">Simpan</button>
+
+  <p id="status"></p>
+</div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/maintenance.js"></script>
+<script src="assets/js/inspeksi.js"></script>
+</body>
+</html>
+
