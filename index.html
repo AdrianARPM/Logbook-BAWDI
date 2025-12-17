@@ -1,24 +1,46 @@
-<!DOCTYPE html>
-<html lang="id">
+<!doctype html>
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Logbook Driver</title>
-<link rel="stylesheet" href="assets/css/app.css">
+<meta charset="utf-8">
+<title>Logbook BAWDI</title>
+<style>
+body{font-family:Arial;background:#f4f6f8}
+.card{width:360px;margin:120px auto;background:#fff;padding:24px;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.1)}
+input,button{width:100%;padding:12px;margin-top:12px}
+button{background:#2563eb;color:#fff;border:none;border-radius:6px}
+</style>
 </head>
-<body class="bg">
+<body>
 
 <div class="card">
-  <img src="assets/img/logo.png" class="logo">
-  <h2>Login Driver</h2>
-
-  <input id="username" placeholder="Username driver">
+  <h3>Login Driver</h3>
+  <input id="username" placeholder="Username">
   <button onclick="login()">Masuk</button>
-
-  <p id="msg" class="msg"></p>
+  <div id="msg"></div>
 </div>
 
-<script src="assets/js/config.js"></script>
-<script src="assets/js/auth.js"></script>
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbxGuWn1VdSeUl84gSH2aDD9izBdRlnN3zJktGzUIwSZhxAtk-mSG8w_60hNf4s-TzGrJg/exec"; // GANTI
+
+async function login(){
+  const username = document.getElementById("username").value.trim();
+  const res = await fetch(API_URL,{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({ action:"login", username })
+  });
+  const j = await res.json();
+
+  if(!j.success){
+    document.getElementById("msg").innerText = j.message;
+    return;
+  }
+
+  localStorage.setItem("user", JSON.stringify(j));
+  alert("Login berhasil: " + j.nama);
+  // redirect dashboard nanti
+}
+</script>
+
 </body>
 </html>
